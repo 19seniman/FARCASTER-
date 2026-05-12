@@ -223,12 +223,46 @@ async function postFromFile(asThread = false) {
 // ─────────────────────────────────────────
 // JADWAL CRON
 // ─────────────────────────────────────────
-console.log("🤖 Farcaster Bot aktif!\n");
 
-// Cek post.txt setiap 10 menit → posting sebagai thread
+// Waktu terakhir posting dari post.txt
+let lastPostTime = null;
+const POST_INTERVAL_MS = 4 * 60 * 60 * 1000; // 4 jam dalam milidetik
+
+async function tryPostFromFile() {
+  const now_ = Date.now();
+
+  // Cek apakah sudah lewat 4 jam sejak posting terakhir
+  if (lastPostTime && now_ - lastPostTime < POST_INTERVAL_MS) {
+    const sisaMs = POST_INTERVAL_MS - (now_ - lastPostTime);
+    const sisaMenit = Math.ceil(sisaMs / 60000);
+    const sisamJam = Math.floor(sisaMenit / 60);
+    const sisaMenitSisa = sisaMenit % 60;
+    console.log(`⏳ [${now()}] Belum waktunya posting. Sisa waktu: ${sisamJam} jam ${sisaMenitSisa} menit`);
+    return;
+  }
+
+  const filePath = path.join(__dirname, "post.txt");
+  if (!fs.existsSync(filePath)) return;
+
+  const content = fs.readFileSync(filePath, "utf-8").trim();
+  if (!content) {
+    console.log(`⚠️  [${now()}] post.txt kosong, menunggu isi pesan...`);
+    return;
+  }
+
+  // Ada isi → posting & update waktu terakhir
+  await postFromFile(true); // ganti false jika tidak mau thread
+  lastPostTime = Date.now();
+  console.log(`🕐 [${now()}] Posting selesai. Posting berikutnya dalam 4 jam.`);
+}
+
+console.log("🤖 Farcaster Bot aktif!\n");
+console.log(`⏰ Jeda antar posting: 4 jam\n`);
+
+// Cek post.txt setiap 10 menit, tapi hanya posting jika sudah 4 jam
 cron.schedule("*/10 * * * *", () => {
   console.log(`⏰ [${now()}] Cek post.txt...`);
-  postFromFile(true); // ganti false jika tidak mau thread
+  tryPostFromFile();
 });
 
 // Post quote eksternal setiap hari jam 08:00
