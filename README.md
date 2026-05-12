@@ -98,15 +98,9 @@ nano post.txt
 Add one post per line, for example:
 
 ```
-Post 1
-
----
-
-Post 2
-
----
-
-Poat 3
+gm frens 🌞 building in public today
+just shipped a new feature — stay tuned 🔥
+consistency beats perfection. showing up daily 💜
 ```
 
 ---
@@ -171,6 +165,23 @@ Pull requests are welcome! If you have ideas for features or improvements, feel 
 Built by **[@19seniman](https://github.com/19seniman)**
 
 Find me on Farcaster — let's connect on the protocol! 🟣
+
+---
+
+---
+
+## 🍉 Donate for Watermelon
+
+If this project helped you, consider buying me a watermelon! 🍉
+
+**EVM Address:**
+```
+0xf01fb9a6855f175d3f3e28e00fa617009c38ef59
+```
+
+> Supports: ETH, BNB, MATIC, ARB, OP, BASE, and any EVM-compatible chain.
+
+Your support keeps the bot alive and the watermelons fresh! 🙏
 
 ---
 
