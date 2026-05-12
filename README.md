@@ -78,8 +78,9 @@ nano .env
 Fill in your details like this:
 
 ```env
-FARCASTER_FID=your_fid_here
-FARCASTER_MNEMONIC=your_mnemonic_here
+NEYNAR_API_KEY=your_api_key
+SIGNER_UUID=your_signer_uuid
+FID=your_fid
 ```
 
 > ⚠️ **Keep your `.env` file private. Never share your mnemonic with anyone.**
@@ -144,17 +145,6 @@ FARCASTER-/
 - A server or VPS to keep the bot running 24/7 (optional but recommended)
 
 ---
-
-## 💡 Tips
-
-- 🔄 **Rotate your posts** in `post.txt` to keep content fresh
-- 🕐 **Adjust the cron schedule** in `lim.js` to post at different intervals
-- 🖥️ Use **PM2** or **screen** to keep the bot alive in the background:
-  ```bash
-  npm install -g pm2
-  pm2 start lim.js --name farcaster-bot
-  pm2 save
-  ```
 
 ---
 
