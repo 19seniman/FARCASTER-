@@ -98,9 +98,15 @@ nano post.txt
 Add one post per line, for example:
 
 ```
-gm frens 🌞 building in public today
-just shipped a new feature — stay tuned 🔥
-consistency beats perfection. showing up daily 💜
+Post 1
+
+---
+
+Post 2
+
+---
+
+Poat 3
 ```
 
 ---
